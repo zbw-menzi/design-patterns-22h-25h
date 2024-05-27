@@ -13,6 +13,11 @@ namespace DesignPatterns.Adapter
     // Freezed
     public class PresidentOfTheBoard
     {
+        public PresidentOfTheBoard(decimal bonus)
+        {
+            Bonus = bonus;
+        }
+
         public decimal Bonus { get; }
     }
 }

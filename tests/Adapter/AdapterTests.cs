@@ -10,6 +10,7 @@ namespace DesignPatterns.Tests.Adapter
     using System.Text;
     using System.Threading.Tasks;
     using DesignPatterns.Adapter;
+    using FluentAssertions;
 
     public class AdapterTests
     {
@@ -17,7 +18,14 @@ namespace DesignPatterns.Tests.Adapter
         public void PaySalaries_WhenPresidentOfTheBoard_ThenSalaryIncluded()
         {
             var employeeManager = new EmployeeManager();
-            //employeeManager.Add(new PresidentOfTheBoard());
+            employeeManager.Add(new Employee(100));
+            employeeManager.Add(new Employee(100));
+            employeeManager.Add(new Employee(100));
+            employeeManager.Add(new Employee(100));
+            employeeManager.Add(new Employee(100));
+            employeeManager.Add(new EmployeeAdapter(new PresidentOfTheBoard(1_000_000)));
+
+            employeeManager.PaySalaries().Should().Be(1_000_500);
         }
     }
 }
