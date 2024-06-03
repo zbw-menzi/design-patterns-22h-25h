@@ -10,6 +10,7 @@ namespace DesignPatterns.Strategy
     using System.Text;
     using System.Threading.Tasks;
 
+    [Singleton]
     public class NullDiscountPricingStrategy : ISalePricingStrategy
     {
         public decimal GetTotal(Sale sale)
