@@ -17,4 +17,17 @@ public class Sale
     {
         return _strategy.GetTotal(this);
     }
+
+    public virtual SaleLineItem Create()
+    {
+
+    }
+}
+
+public class SuperSale : Sale
+{
+    public override SaleLineItem Create()
+    {
+        return base.Create();
+    }
 }

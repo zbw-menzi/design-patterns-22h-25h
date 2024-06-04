@@ -1,4 +1,5 @@
 ﻿using DesignPatterns.Singleton;
+using DesignPatterns.Strategy;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,13 @@ builder.Services.AddScoped<IEmployeeManager2, EmployeeManager2>();
 builder.Services.AddSingleton<IEmployeeManager2, EmployeeManager2>(); // Only one instance per application
 
 
+builder.Services.AddKeyedTransient<ISalePricingStrategy, NullDiscountPricingStrategy>("null");
+builder.Services.AddKeyedTransient<ISalePricingStrategy, AbsoluteDiscountOverThresholdStrategy>("absolute");
+
 var app = builder.Build();
+
+
+app.Services.GetKeyedService<ISalePricingStrategy>("absolute");
 
 using var scope = app.Services.CreateScope();
 {

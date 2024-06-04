@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using DesignPatterns.Decorator;
+    using DesignPatterns.Factory;
     using DesignPatterns.Strategy;
     using FluentAssertions;
 
@@ -23,6 +24,10 @@
 
             // Assert
             total.Should().Be(90);
+
+
+            var store = new WienerPizzaStore();
+            var pizza = store.Create();
         }
     }
 }
